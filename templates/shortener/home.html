@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>URL Shortener</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Shorten URL</button>
+        </form>
+
+        {% if short_url %}
+        <div class="result">
+            <p>Shortened URL: 
+                <a href="{{ short_url }}" target="_blank" rel="noopener noreferrer">
+                    {{ short_url }}
+                </a>
+            </p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
